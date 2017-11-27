@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Chart from './Chart';
+import Table from './Table';
+import moment from 'moment';
 
 class App extends Component {
 
@@ -32,7 +34,7 @@ class App extends Component {
     try {
       const response = await axios.get(url, config);
 
-      console.log(response);
+      console.log(response.data.data);
 
       this.setState({ data: response.data.data });
     }
@@ -47,9 +49,25 @@ class App extends Component {
   render() {
     const { data, loading } = this.state;
 
+    const parsedData = data.map(item => ({
+      ...item,
+      timestamp: moment(item.time, 'YYYY-MM-DD HH:mm').valueOf(),
+      btr: parseFloat(item.btr),
+      ctr: parseFloat(item.ctr),
+      errors: parseFloat(item.errors),
+      str: parseFloat(item.str),
+      success: parseFloat(item.success),
+      timeouts: parseFloat(item.timeouts),
+      zeros: parseFloat(item.zeros),
+    }));
+
     return (
       <div className="app">
-        <Chart data={data} />
+        <Chart data={parsedData} />
+        <Table data={parsedData} />
+        {
+          loading && (<div className="loading-overlay" />)
+        }
       </div>
     );
   }

@@ -1,5 +1,164 @@
 body {
   margin: 0;
   padding: 0;
+  font-size: 14px;
   font-family: sans-serif;
+  color: #333;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+button:focus {
+  outline: 0;
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  opacity: .5;
+}
+
+.chart {
+  margin-top: 16px;
+}
+
+.table-container {
+  margin-top: 32px;
+  padding: 0 8px;
+}
+
+.table {
+  width: 100%;
+  color: #008CAC;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.table tr {
+  border-top: 1px solid #DDD;
+}
+
+.table tr:first-child {
+  border-top: none;
+}
+
+.table tr.total-row {
+  border-top: 1px solid #000;
+}
+
+.table tr.even {
+  background-color: #F9F9F9;
+}
+
+.table td {
+  padding: 6px 2px;
+}
+
+.table-header-cell {
+  text-align: left;
+}
+
+.table-header-cell:hover {
+  cursor: pointer;
+}
+
+.table-header-cell:after {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  margin-left: 8px;
+}
+
+.table-header-cell.active:after {
+  width: 0;
+  height: 0;
+  border-style: solid;
+}
+
+.table-header-cell.sort-asc.active:after {
+  border-width: 0 4px 8px 4px;
+  border-color: transparent transparent #008CAC transparent;
+}
+
+.table-header-cell.sort-desc.active:after {
+  border-width: 8px 4px 0 4px;
+  border-color: #008CAC transparent transparent transparent;
+}
+
+.total-row {
+  background-color: #EDF8FF;
+}
+
+.total-row .total-label {
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.pagination-btn {
+  display: inline-block;
+  font-size: 1rem;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: #00B298;
+  line-height: 40px;
+}
+
+.pagination-btn:hover {
+  cursor: pointer;
+}
+
+.pagination-btn.disabled {
+  color: #333;
+}
+
+.pagination-btn.disabled:hover {
+  cursor: not-allowed;
+}
+
+.pagination-page {
+  width: 40px;
+  border-radius: 20px;
+}
+
+.pagination-page.active {
+  background-color: #00B298;
+  color: #fff;
+}
+
+.pagination-prev,
+.pagination-next {
+  margin: 0 16px;
+}
+
+.table-perpage {
+  margin: 16px 0;
+}
+
+.table-perpage input {
+  display: inline-block;
+  width: 48px;
+  margin: 0 8px;
+}
+
+.table-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 32px 0;
+}
+
+.goto-page {
+  color: #008CAC;
+}
+
+.goto-page input {
+  display: inline-block;
+  width: 40px;
+  margin-left: 16px;
 }
